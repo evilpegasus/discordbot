@@ -2,27 +2,27 @@ from secrets import *
 import discord
 from discord.ext import commands
 
-client = discord.Client()
 bot = commands.Bot(command_prefix = '/')
 
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.lower().startswith('/hello'):
-        await message.channel.send('Hello!')
-    
-    # if message.content.lower().startswith('/insult'):
-    #     await message.channel.send('ok boomer!')
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('------')
 
 @bot.command()
-async def asdf(ctx, member: discord.Member):
-    print("insult at" + ctx)
-    await ctx.send("ok boomer {0}".format(member))
+async def insult(ctx, user: discord.User):
+    print("insult at " + str(ctx))
+    await ctx.send("ok boomer "+ user.mention)
 
-client.run(token)
+@bot.command(pass_context = True)
+async def kick(ctx, user_name: discord.User):
+    try:
+        await ctx.guild.kick(user_name, reason = "hahaha loser you got kicked")
+        await ctx.send("Kicked " + user_name.mention)
+    except discord.Forbidden:
+        await ctx.send("Insufficient permissions to kick " + user_name.mention)
+
+
+bot.run(token)
