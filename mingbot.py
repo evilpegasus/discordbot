@@ -17,11 +17,12 @@ async def on_message(message):
     if message.content.lower().startswith('/hello'):
         await message.channel.send('Hello!')
     
-    if message.content.lower().startswith('/insult'):
-        await message.channel.send('ok boomer!')
+    # if message.content.lower().startswith('/insult'):
+    #     await message.channel.send('ok boomer!')
 
 @bot.command()
-async def insult(ctx, username):
-    
+async def asdf(ctx, member: discord.Member):
+    print("insult at" + ctx)
+    await ctx.send("ok boomer {0}".format(member))
 
 client.run(token)
