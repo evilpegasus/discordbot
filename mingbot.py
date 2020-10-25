@@ -1,7 +1,9 @@
 from secrets import *
 import discord
+from discord.ext import commands
 
 client = discord.Client()
+bot = commands.Bot(command_prefix = '/')
 
 @client.event
 async def on_ready():
@@ -12,7 +14,14 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$hello'):
+    if message.content.lower().startswith('/hello'):
         await message.channel.send('Hello!')
+    
+    if message.content.lower().startswith('/insult'):
+        await message.channel.send('ok boomer!')
+
+@bot.command()
+async def insult(ctx, username):
+    
 
 client.run(token)
