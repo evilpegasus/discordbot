@@ -48,7 +48,8 @@ async def votekick(ctx, user_name: discord.User):
         try:
             await ctx.guild.kick(user_name, reason = "You were votekicked")
             await ctx.send(str(votes[user_name]) + "/" + str(VOTES_TO_KICK) + " " + user_name.mention + " was " + random.choice(["", "not "]) + "the imposter.")
-            votes[user_name] = 0
+            votes.pop(user_name)
+            voters.pop(user_name)
         except discord.Forbidden:
             await ctx.send(str(votes[user_name]) + "/" + str(VOTES_TO_KICK) + " " + user_name.mention + " is too powerful to be kicked")
     else:
