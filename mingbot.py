@@ -14,8 +14,11 @@ async def on_ready():
     await bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "you"))
 
 @bot.command()
+async def h(ctx):
+    await ctx.send("There is no documentation")
+
+@bot.command()
 async def insult(ctx, user: discord.User):
-    print("insult at " + str(ctx))
     await ctx.send("ok boomer "+ user.mention)
 
 # @bot.command(pass_context = True)
@@ -26,15 +29,21 @@ async def insult(ctx, user: discord.User):
 #     except discord.Forbidden:
 #         await ctx.send("Insufficient permissions to kick " + user_name.mention)
 
-votes = {}
-VOTES_TO_KICK = 1
+votes = {} # key is person being voted, values is number of votes
+voters = {} # key is person being voted, values is list of voters
+VOTES_TO_KICK = 4
 
 @bot.command(pass_context = True)
 async def votekick(ctx, user_name: discord.User):
     if user_name not in votes:
-        votes[user_name] = 1
-    else:
+        votes[user_name] = 0
+        voters[user_name] = []
+    if ctx.message.author not in voters[user_name]:
         votes[user_name] = votes.get(user_name, 0) + 1
+        voters[user_name].append(ctx.message.author)
+    else:
+        await ctx.send(str(votes[user_name]) + "/" + str(VOTES_TO_KICK) + " " + ctx.message.author.mention + " has already voted to kick " + user_name.mention)
+        return
     if votes[user_name] >= VOTES_TO_KICK:
         try:
             await ctx.guild.kick(user_name, reason = "You were votekicked")
