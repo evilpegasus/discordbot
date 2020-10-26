@@ -130,3 +130,5 @@ dmypy.json
 
 # secret keys and tokens
 secrets.py
+ocf_key.pub
+ocf_key
