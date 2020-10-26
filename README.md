@@ -1,2 +1,2 @@
 # discordbot
-My discord bot
+Custom discord bot for my server
