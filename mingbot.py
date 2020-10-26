@@ -14,6 +14,10 @@ async def on_ready():
     await bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "you"))
 
 @bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
+
+@bot.command()
 async def h(ctx):
     await ctx.send("There is no documentation")
 
