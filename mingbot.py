@@ -11,15 +11,24 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    await bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "you"))
+    await bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "you /mingbot"))
+
+@bot.command()
+async def mingbot(ctx):
+    """
+    Use this website to generate embeded message
+    https://cog-creators.github.io/discord-embed-sandbox/
+    """
+    embed=discord.Embed(title="mingbot Commands Help", url="https://github.com/evilpegasus/discordbot", color=0x00ff00)
+    embed.add_field(name="/mingbot", value="displays help for mingbot commands (this message)", inline=False)
+    embed.add_field(name="/ping", value="pong", inline=False)
+    embed.add_field(name="/votekick @user", value="votes to kick the mentioned @user", inline=False)
+    embed.add_field(name="/insult @user", value="insults the mentioned @user", inline=True)
+    await ctx.send(embed=embed)
 
 @bot.command()
 async def ping(ctx):
     await ctx.send("pong")
-
-@bot.command()
-async def h(ctx):
-    await ctx.send("There is no documentation")
 
 @bot.command()
 async def insult(ctx, user: discord.User):
@@ -33,6 +42,7 @@ async def insult(ctx, user: discord.User):
 #     except discord.Forbidden:
 #         await ctx.send("Insufficient permissions to kick " + user_name.mention)
 
+# TODO remove votes and just count voters
 votes = {} # key is person being voted, values is number of votes
 voters = {} # key is person being voted, values is list of voters
 VOTES_TO_KICK = 4
