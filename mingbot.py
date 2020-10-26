@@ -51,7 +51,9 @@ async def votekick(ctx, user_name: discord.User):
     if votes[user_name] >= VOTES_TO_KICK:
         try:
             await ctx.guild.kick(user_name, reason = "You were votekicked")
-            await ctx.send(str(votes[user_name]) + "/" + str(VOTES_TO_KICK) + " " + user_name.mention + " was " + random.choice(["", "not "]) + "the imposter.")
+            embed = discord.Embed(color = discord.Color.red())
+            embed.set_image(url = "https://media1.tenor.com/images/f5ef212aa1e15d3f903ee4df41902753/tenor.gif")
+            await ctx.send(str(votes[user_name]) + "/" + str(VOTES_TO_KICK) + " " + user_name.mention + " was " + random.choice(["", "not "]) + "the imposter.", embed = embed)
             votes.pop(user_name, 0)
             voters.pop(user_name, 0)
         except discord.Forbidden:

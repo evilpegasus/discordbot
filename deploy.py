@@ -2,7 +2,8 @@ from __future__ import print_function,unicode_literals
 import subprocess
 from time import sleep
 
-subprocess.run(r"scp -i ocf_key .\mingbot.py .\secrets.py .\start.bash mingfong@ssh.ocf.berkeley.edu:~/discordbot")
+# subprocess.run(r"scp -i ocf_key .\mingbot.py .\secrets.py .\start.bash mingfong@ssh.ocf.berkeley.edu:~/discordbot")
+subprocess.run(r"scp -i ocf_key .\mingbot.py mingfong@ssh.ocf.berkeley.edu:~/discordbot")
 
 sshProcess = subprocess.Popen(['ssh', '-i', 'ocf_key',
                                'mingfong@ssh.ocf.berkeley.edu'],
