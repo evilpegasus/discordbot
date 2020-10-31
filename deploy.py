@@ -15,7 +15,7 @@ sshProcess = subprocess.Popen(['ssh', '-i', 'ocf_key',
 # sshProcess.stdin.write("nohup python3 ~/discordbot/mingbot.py > test.txt 2>&1 </dev/null &\n")
 
 # sshProcess.stdin.write("chmod 755 ~/discordbot/start.bash\n")
-sshProcess.stdin.write("./start.bash\n")
+# sshProcess.stdin.write("./start.bash\n")
 sshProcess.stdin.close()
 
 # subprocess.run(r"scp -i ocf_key .\mingbot.py .\secrets.py mingfong@ssh.ocf.berkeley.edu:~/discordbot")
