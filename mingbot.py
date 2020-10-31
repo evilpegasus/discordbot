@@ -76,6 +76,15 @@ async def clear(ctx):
     else:
         await ctx.send(ctx.message.author.mention + " didn't have any shots to clear... weak")
 
+@bot.command()
+async def trickortreat(ctx):
+    if random.choice([True, False]) or ctx.message.author == "anitazma#3447":
+        img_url = "https://media1.tenor.com/images/5825c44d1dbd0771cba9f13d5eb1791a/tenor.gif"
+        text = "Get spooked " + ctx.message.author.mention
+    else:
+        img_url = "https://media1.tenor.com/images/8b10408f29a0e6b90f06e13af8c63af9/tenor.gif"
+        text = "You get a treat " + ctx.message.author.mention
+    await ctx.send(text + "\n" + img_url)
 
 # @bot.command(pass_context = True)
 # async def kick(ctx, user_name: discord.User):
