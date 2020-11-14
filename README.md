@@ -10,3 +10,7 @@ SCP the files to your remote machine and run mingbot.py
 
 ## Features
 Type `/mingbot` into Discord to print the help menu
+
+TODO: aternos API server manager
+
+https://github.com/Mekolaos/Aternos-On-Discord
